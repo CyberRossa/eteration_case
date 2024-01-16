@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.apache.tomcat.util.http.parser.MediaType;
 
 import com.eteration.simplebanking.controller.AccountController;
 import com.eteration.simplebanking.controller.TransactionStatus;
@@ -22,6 +25,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @ContextConfiguration
@@ -40,7 +46,7 @@ class ControllerTests  {
     public void givenId_Credit_thenReturnJson()
     throws Exception {
         
-        Account account = new Account("Kerem Karaca", "17892");
+        Account account = new Account("Jim", "12345");
 
         doReturn(account).when(service).findAccount( "17892");
         ResponseEntity<TransactionStatus> result = controller.credit( "17892", new DepositTransaction(1000.0));
@@ -90,5 +96,6 @@ class ControllerTests  {
         verify(service, times(1)).findAccount("17892");
         assertEquals(account, result.getBody());
     }
+
 
 }
