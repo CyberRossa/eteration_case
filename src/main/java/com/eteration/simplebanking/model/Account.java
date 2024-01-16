@@ -30,9 +30,7 @@ public class Account {
     @OneToMany(mappedBy =  "account", cascade = CascadeType.ALL)
     public List<Transaction> transactions = new ArrayList<>(); 
 
-    public Account(String string, String string2) {
-        //TODO Auto-generated constructor stub
-    }
+  
 
     /**
      * Posts a transaction to the account 
@@ -100,6 +98,11 @@ public class Account {
 
     public List<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public Account(String owner, String accountNumber) {
+        this.owner = owner;
+        this.accountNumber = accountNumber;
     }
 
     public void setTransactions(List<Transaction> transactions) {

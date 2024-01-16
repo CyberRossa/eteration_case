@@ -61,7 +61,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account createAccount(String owner, String accountNumber)
     {
-        Account account = new Account();
+        Account account = new Account(owner, accountNumber);
         return accountRepository.save(account);
     }
 
